@@ -60,3 +60,22 @@ public class StringCalculator {
 				.map(Pattern::quote)
 				.collect(Collectors.joining("|"));
 	}
+@Rule
+public ExpectedException expectedException = ExpectedException.none();
+
+//single negative number
+@Test
+public void throwsOnNegativeNumber() {
+expectedException.expect(IllegalArgumentException.class);
+expectedException.expectMessage("negatives not allowed: -3");
+StringCalculator.add("-3");
+}
+
+//multiple negative numbers
+@Test
+public void throwsOnNegativeNumbersWithAllNumbersInExceptionMessage() {
+expectedException.expect(IllegalArgumentException.class);
+expectedException.expectMessage("negatives not allowed: -3,-5,-13");
+StringCalculator.add("1,-3,5,-5,-13");
+		}
+}
