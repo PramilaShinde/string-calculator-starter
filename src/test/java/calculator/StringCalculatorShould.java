@@ -69,6 +69,13 @@ assertEquals(StringCalculator.add("1040,10002"), 42);
 public void String_Accepts_Delimiter_Of_ArbitraryLength() {
 assertEquals(StringCalculator.add("//[***]\n1***2***3"),6);
 }
+
+@Test
+public void String_Accepts_Multiple_Delimiters() {
+assertEquals(StringCalculator.add("//[-][;]\n1-2;3"), 6);
+assertEquals(StringCalculator.add("//[--][...]\n2--3...4"), 9);
+		
+}
 }
 
 
