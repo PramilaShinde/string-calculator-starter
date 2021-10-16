@@ -40,3 +40,23 @@ public class StringCalculator {
 	public static int add(String input) {
 		return parseInput(input).sum();
 	}
+	
+	private static StringCalculator parseInput(String input) {
+		if (input.startsWith("//")) {
+			String[] headerAndNumberSequence = input.split("\n", 2);
+			String delimiter = parseDelimiter(headerAndNumberSequence[0]);
+			return new StringCalculator(delimiter, headerAndNumberSequence[1]);
+		} else {
+			return new StringCalculator(",|\n", input);
+		}
+	}
+
+	private static String parseDelimiter(String header) {
+		String delimiter = header.substring(2);
+		if (delimiter.startsWith("[")) {
+			delimiter = delimiter.substring(1, delimiter.length() - 1);
+		}
+		return Stream.of(delimiter.split("]\\["))
+				.map(Pattern::quote)
+				.collect(Collectors.joining("|"));
+	}

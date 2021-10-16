@@ -36,6 +36,16 @@ public void Stringsums_Numbers_Delimited_ByNewline() {
 assertEquals(StringCalculator.add("1\n2"), 3);
 }
 
+@Test
+public void Stringsums_Numbers_Delimited_ByComma_Or_Newline() {
+assertEquals(StringCalculator.add("1,2\n3"), 6);
+}
+
+@Test
+public void String_Uses_DelimiterSepcified() {
+assertEquals(StringCalculator.add("//;\n1;2"), 3);
+assertEquals(StringCalculator.add("//.\n2.3.1"), 6);
+}
 }
 
 
