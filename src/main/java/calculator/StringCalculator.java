@@ -1,9 +1,20 @@
 package calculator;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-class StringCalculator {
+public class StringCalculator {
 
-    public int add(String input) {
-        return 0;
-    }
+	private String delimiter;
+	private String numbers;
 
-}
+	private StringCalculator(String delimiter, String numbers) {
+		this.delimiter = delimiter;
+		this.numbers = numbers;
+	}
+
+	private int sum() {
+		ensureNoNegativeNumbers();
+		return getNumbers().sum();
+	}

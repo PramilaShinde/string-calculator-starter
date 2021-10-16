@@ -1,5 +1,9 @@
 package calculator;
-
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import com.demo.beans.StringCalculator;
+import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,4 +21,18 @@ class StringCalculatorShould {
         StringCalculator stringCalculator = new StringCalculator();
         assertEquals(1, stringCalculator.add("1"));
     }
+
+   @Test
+  public void string_sum_Of_TwoNumbers_Seperated_ByComma() {
+  assertEquals(StringCalculator.add("1,2"), 3);
 }
+
+}
+
+
+
+
+
+
+
+		
