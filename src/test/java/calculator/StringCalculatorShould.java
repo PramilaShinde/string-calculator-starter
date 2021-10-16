@@ -40,12 +40,26 @@ assertEquals(StringCalculator.add("1\n2"), 3);
 public void Stringsums_Numbers_Delimited_ByComma_Or_Newline() {
 assertEquals(StringCalculator.add("1,2\n3"), 6);
 }
+@Rule
+public ExpectedException expectedException = ExpectedException.none();
 
+//single negative number
 @Test
-public void String_Uses_DelimiterSepcified() {
-assertEquals(StringCalculator.add("//;\n1;2"), 3);
-assertEquals(StringCalculator.add("//.\n2.3.1"), 6);
+public void throwsOnNegativeNumber() {
+expectedException.expect(IllegalArgumentException.class);
+expectedException.expectMessage("negatives not allowed: -3");
+StringCalculator.add("-3");
 }
+
+//multiple negative numbers
+@Test
+public void throwsOnNegativeNumbersWithAllNumbersInExceptionMessage() {
+expectedException.expect(IllegalArgumentException.class);
+expectedException.expectMessage("negatives not allowed: -3,-5,-13");
+StringCalculator.add("1,-3,5,-5,-13");
+		}
+
+
 }
 
 

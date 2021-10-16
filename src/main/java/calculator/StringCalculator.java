@@ -60,33 +60,5 @@ public class StringCalculator {
 				.map(Pattern::quote)
 				.collect(Collectors.joining("|"));
 	}
-@Rule
-public ExpectedException expectedException = ExpectedException.none();
 
-//single negative number
-@Test
-public void throwsOnNegativeNumber() {
-expectedException.expect(IllegalArgumentException.class);
-expectedException.expectMessage("negatives not allowed: -3");
-StringCalculator.add("-3");
-}
-
-//multiple negative numbers
-@Test
-public void throwsOnNegativeNumbersWithAllNumbersInExceptionMessage() {
-expectedException.expect(IllegalArgumentException.class);
-expectedException.expectMessage("negatives not allowed: -3,-5,-13");
-StringCalculator.add("1,-3,5,-5,-13");
-		}
-
-@Test
-public void String_Maps_Numbers_Above_1000To_LastThreeDigits() {
-assertEquals(StringCalculator.add("1002"), 2);
-assertEquals(StringCalculator.add("1040,10002"), 42);
-}
-
-@Test
-public void String_Accepts_Delimiter_Of_ArbitraryLength() {
-assertEquals(StringCalculator.add("//[***]\n1***2***3"),6);
-}
 }
